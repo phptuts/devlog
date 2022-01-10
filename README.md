@@ -6,3 +6,4 @@ This is record of everything I am doing life wise and dev wise in my life.  I am
 - [Courses](courses/index.md)
 - [ElectroBlocks](electroblocks/index.md)
 - [Personal Notes](personal_notes/index.md)
+- [Tutorial Ideas](tutorial-ideas.md)

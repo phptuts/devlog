@@ -1,6 +1,6 @@
 # PostGIS In Action v3
 
-This is my journey through the book postgis in action. 
+This is my journey through the book [postgis in action](https://www.manning.com/books/postgis-in-action-third-edition).
 
 ## Day 1 - 2022-01-05
 
