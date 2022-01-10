@@ -207,3 +207,38 @@ $this->assertDatabaseHas('blog_posts', [
             'title' => 'New Title',
         ]);
 ```
+
+## Day 11 - 2022-01-09
+
+Today we went over more testing.  Things like how to make a request.  To laravel credit testing end to end is really easy.  
+
+```php
+ $params = [
+    'title' => 'x',
+    'content' => 'x',
+];
+// They have these for every method of php
+$this->post('/posts', $params)
+    ->assertStatus(302)
+    ->assertSessionHas('errors');
+```
+
+I also learned about some of the helper methods for testing.
+
+```php
+$response = $this->post('/posts', $params);
+
+// can check messages in the session.  This would check if session key status key stores the word "test"
+$response->assertSessionHas('test', session('status')); 
+
+// Checks in the blog_posts table if a record exists with the title "New Title"
+$this->assertDatabaseHas('blog_posts', [
+            'title' => 'New Title',
+        ]); 
+        
+// Checks in the blog_posts table if something does not exist in the database
+$this->assertDatabaseMissing('blog_posts', [
+            'title' => 'New Title',
+            'content' => "Hello World",
+        ]);
+```
