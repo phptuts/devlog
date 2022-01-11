@@ -1,0 +1,7 @@
+#100DaysOfSwift Day 60 - 2022-01-09
+
+Today I was a challenge day.  
+
+## Changing tint color on the pins to your favorite color.
+
+So for my first challenge I tried to create a has been there effect by showing orange as the first color the user see when the they view pin and purple if the pin already exists.  It did not work out perfectly because sometimes it shows orange no matter what.  I think I would have to keep track of that some other way.
