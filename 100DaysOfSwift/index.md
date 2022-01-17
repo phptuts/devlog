@@ -2,6 +2,10 @@
 
 My iOS mentor suggested that I go through [100DaysOfSwift](https://www.hackingwithswift.com/100/).  This is my journery through it.  I started recording notes at day 49.  If you have any questions feel free to email me glaserpower [@] gmail.com.
 
+## Skipping App Extension Lessons
+
+For now I recommend skipping the app extension lessons.  They do not work on iOS 15 and probably do not work on iOS 14.  These lessons are from 67 through 69. 
+
 ## Navigation
 
 - [Day 49](49.md)
