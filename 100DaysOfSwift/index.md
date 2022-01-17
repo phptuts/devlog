@@ -22,4 +22,5 @@ My iOS mentor suggested that I go through [100DaysOfSwift](https://www.hackingwi
 - [Day 64](64.md)
 - [Day 65](65.md)
 - [Day 66](66.md)
+- [Day 67](67.md)
 
