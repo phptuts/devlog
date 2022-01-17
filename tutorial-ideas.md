@@ -1,5 +1,9 @@
 # Quick Tutorial Idea
 
+## Svelte
+
+- Finish Firebase 9 / Svelte Kit Video
+- Document doing vs code extension
 
 ## iOS
 
@@ -11,6 +15,7 @@
 - How to create a mapview with pins and taps
 - How to respond to central state on didSet
 - How to do simple animations
+- How to build a simple game with Sprite Kit
 
 
 ## Laravel
