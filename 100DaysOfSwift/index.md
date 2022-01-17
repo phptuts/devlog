@@ -6,6 +6,10 @@ My iOS mentor suggested that I go through [100DaysOfSwift](https://www.hackingwi
 
 For now I recommend skipping the app extension lessons.  They do not work on iOS 15 and probably do not work on iOS 14.  These lessons are from 67 through 69. 
 
+I felt the big thing I missed was messing with the notification center.  I think will try doing that for my day 69.  
+
+https://www.hackingwithswift.com/example-code/system/how-to-post-messages-using-notificationcenter
+
 ## Navigation
 
 - [Day 49](49.md)
