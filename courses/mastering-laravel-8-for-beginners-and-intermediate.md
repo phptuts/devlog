@@ -243,3 +243,77 @@ $this->assertDatabaseMissing('blog_posts', [
             'content' => "Hello World",
         ]);
 ```
+
+## Day 12 - 2022-01-16
+
+Today I learned about 1 to 1 relationships in Laravel.  Say that you have an Author and a Profile.  The profile will have author_id field on it.
+
+### Migration
+
+#### Author
+
+```php
+Schema::create('authors', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+});
+```
+
+#### Profile
+
+The unique constraint prevents us from an author having more than one profile. 
+
+```php
+Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->unsignedBigInteger('author_id')->unique();
+            $table
+                ->foreign('author_id')
+                ->references('id')
+                ->on('authors');
+});
+```
+
+### Code
+
+```php
+class Author extends Model
+{
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+}
+
+```
+
+```php
+class Profile extends Model
+{
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
+}
+```
+
+### Creating 
+
+```php
+// Option 1
+$author = Author::create();
+$profile = new Profile();
+$author->profile()->save($profile);
+
+// Option 2
+$author = Author::create();
+$profile->author()->associate($author)->save();
+
+// Option 3
+$author = Author::create();
+$profile = new Profile();
+$profile->author_id = $author->id;
+$profile->save();
+```
