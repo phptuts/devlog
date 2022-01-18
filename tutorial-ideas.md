@@ -1,9 +1,17 @@
 # Quick Tutorial Idea
 
+## Arduino Classes
+
+- Mini Golf
+- Basketball
+- Interactive Art
+
 ## Svelte
 
 - Finish Firebase 9 / Svelte Kit Video
 - Document doing vs code extension
+- Arduino Robot Programmer (Simple)
+- Arduino Video Editor
 
 ## iOS
 
