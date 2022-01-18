@@ -160,6 +160,7 @@ I also got QGIS and OpenJump install.  Both GIS applications required to do this
 
 These must be in the same folder.
 
+#### Dockerfile
 ```Dockerfile
 FROM postgres:13
 
@@ -167,6 +168,7 @@ RUN apt update
 RUN apt install postgis postgresql-13-postgis-3-scripts --yes
 ```
 
+#### docker-compose.yml
 ```yml
 version: '3.5'
 
