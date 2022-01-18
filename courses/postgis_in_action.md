@@ -148,3 +148,43 @@ GROUP BY f.franchise
 ORDER BY total DESC;
 ```
 <img width="318" alt="db" src="https://user-images.githubusercontent.com/9620015/148676502-a7c71799-7f55-428d-ba13-8981acea6b42.png">
+
+## Day 5 - 2022-01-16
+
+Today I worked on transfering the postgis action work to my local machine.  To do this I used docker.  I finally got everything working.  I also had to install postgis and postgis_raster on the public schema.  This book suggests against that but stackover says different.  Regardless it will work.  Bottom line I have a lot to learn about devops!
+
+I also got QGIS and OpenJump install.  Both GIS applications required to do this book.  I am grateful I am doing alernate days!
+
+
+### Docker
+
+These must be in the same folder.
+
+```Dockerfile
+FROM postgres:13
+
+RUN apt update
+RUN apt install postgis postgresql-13-postgis-3-scripts --yes
+```
+
+```yml
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    build: .
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+```
+### Installing Postgis
+
+
+```sql
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_raster;
+```
