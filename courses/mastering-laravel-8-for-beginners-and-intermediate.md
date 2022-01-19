@@ -317,3 +317,19 @@ $profile = new Profile();
 $profile->author_id = $author->id;
 $profile->save();
 ```
+
+## Day 13 - 2022-01-18
+
+Today I learned that laravel does lazy loading by default.  I also learned that you do eager loading with the "with" method.
+
+```php
+$author = Author::with('profile')->whereKey(1)->first();
+```
+
+I also learned about the whereKey which is the same as where('id', 3) expect whereKey will work when the primary key is not id.  This is find under the hood.
+
+```php
+// These two lines are the same.
+$author = Author::with('profile')->whereKey(1)->first();
+$author = Author::find(1);
+```
