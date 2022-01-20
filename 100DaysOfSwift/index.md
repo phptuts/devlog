@@ -33,4 +33,5 @@ https://www.hackingwithswift.com/example-code/system/how-to-post-messages-using-
 - [Day 67](67.md)
 - [Day 68](68.md)
 - [Day 69](69.md)
+- [Day 70](70.md)
 
