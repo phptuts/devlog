@@ -31,3 +31,72 @@ func main() {
 
 ```
 
+## How to declare slice
+
+- Slices can shrink and grow size wise
+- Slices can only store one type of value
+
+```go
+colors := []string { "red", "green", "blue" }
+```
+
+## How to loop through a slice
+
+```go
+colors := []string { "red", "green", "blue" }
+
+for index, color in color {
+   fmt.Println(i, "index")
+   fmt.Println(color, "value")
+}
+
+// If you don't need index or color use an "_"
+
+for _, color in color {
+   fmt.Println(color, "value")
+}
+
+```
+
+## How to declare alias type
+
+The deck type now has all functionality that a slice of strings would have.
+
+```go
+type deck []string
+```
+
+## How to add recieve functions 
+
+This creates a receiver function.  
+
+- d is the same as "self" or "this" in other programming languages
+
+```swift
+func (d deck) print() {
+	for i, card := range d {
+		fmt.Println(i, card)
+	}
+}
+
+var deck = deck{"ace of spades", "queen of hearts"}
+
+deck.print()
+
+```
+
+## How to have a function return multiple values
+
+```go
+
+func math(a int, b int) (int, int) {
+   return a + b, a * b
+}
+
+add, times := math(3, 4)
+
+// add = 7
+// times = 12
+
+```
+
