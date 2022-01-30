@@ -7,5 +7,3 @@ This is record of everything I am doing life wise and dev wise in my life.  I am
 - [ElectroBlocks](electroblocks/index.md)
 - [Personal Notes](personal_notes/index.md)
 - [Tutorial Ideas](tutorial-ideas.md)
-- [Go: The Complete Developer's Guide (Golang)
-](https://github.com/phptuts/devlog/blob/master/courses/Go:%20The%20Complete%20Developer's%20Guide%20(Golang).md)
