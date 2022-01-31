@@ -100,3 +100,75 @@ add, times := math(3, 4)
 
 ```
 
+## Type casting in Go
+
+Type casting is done by putting the type follow by the value in ().
+
+```go
+n := 923
+s := string(n)
+b := []byte(s)
+fmt.Println(b)  // [206 155]
+```
+
+## Turn a string into slice
+
+```go
+names := "Fred,Amy,Carson"
+
+fmt.Println(strings.Split(names, ",")) // [Fred Amy Carson]
+```
+
+## Turn a slice into an string
+
+
+```go
+names := []string{ "Fred", "Amy", "Carson" }
+
+fmt.Println(strings.Join(names, ",")) // Fred,Amy,Carson
+```
+
+## Writing a file in Go
+
+
+```go
+func (d deck) saveToFile(filename string) error {
+    return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+```
+
+## Reading a file in Go
+
+```go
+func newDeckFromFile(filename string) deck {
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		// Option #1 - Log error and return a call to new Deck
+		// Option #2 - Log the erro and entirely quite the program
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+	
+	return deck(strings.Split(string(bs), ","))
+}
+```
+
+## Random Numbers and Randomizing Slices
+
+```
+func (d deck) shuffle() {
+	// Creates a new source from the timestamp
+	// The new source is used to create random numbers
+	// Otherwise the same random numbers will be created each time the program is ran
+	source := rand.NewSource(time.Now().UnixNano())
+	// create a new rand "object"
+	r := rand.New(source)
+
+	for i := range d {
+		// Picks a random position in the slice
+		newPosition := r.Intn(len(d) -1)
+		// Swaps the value with the current index  in the loop
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
+}
+```
