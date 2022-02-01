@@ -43,5 +43,8 @@ https://www.hackingwithswift.com/example-code/system/how-to-post-messages-using-
 - [Day 76.5](76.5.md)
 - [Day 77](77.md)
 - [Day 78](78.md)
+- [Day 79](79.md)
+- [Day 80](80.md)
+- [Day 81](81.md)
 
 
