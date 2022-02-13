@@ -3,7 +3,9 @@
 ## Getting Started
 
 1\. run `npm init -y`
+
 2\. run `npm install electron`
+
 3\. in your package js add start to your scripts
 
 ```json
@@ -64,7 +66,8 @@ async function main() {
   const countryCode = app.getLocaleCountryCode();
 
    // This wrapped in platform darwin which means mac only
-   // The reason is that app.isInApplicationsFolder() is checking if the electron app is in the application folder which
+   // The reason is that app.isInApplicationsFolder() is checking if
+   // the electron app is in the application folder which
    // is a mac only thing
    if (os.platform() == 'darwin') {
     const isInAppFolder = app.isInApplicationsFolder();
