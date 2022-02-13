@@ -79,3 +79,43 @@ async function main() {
 
 
 ```
+
+## Backend With Window
+
+This will get the node js process of electron going.
+
+Electron has node backend process called main and render processes that execute on the windows.
+
+```js
+// first require electron
+const { app, BrowserWindow } = require('electron');
+const os = require('os');
+const path = require('path');
+
+// When ready will return a promise once the electron app is initialize
+app.whenReady().then(main);
+
+// This function will run once whenReady is good.
+async function main() {
+  window = new BrowserWindow({
+    width: 800, // px
+    height: 600, // px
+    resizable: true, // toggles resizes
+    maximizable: false, // toggles maximizing the window
+    autoHideMenuBar: true, // This will hide menu bar on windows only
+  });
+  // load the html
+  window.loadFile(path.join(__dirname, '/index.html'));
+  
+  
+  // allows to respond to window events
+  window.on('resize', (e) => {
+    console.log(window.getBounds());
+  });
+  window.on('move', (e) => {
+    console.log(window.getBounds());
+  });
+
+}
+
+```
