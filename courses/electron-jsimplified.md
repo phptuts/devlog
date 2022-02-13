@@ -119,3 +119,112 @@ async function main() {
 }
 
 ```
+
+## Preventing Flickering on Windows
+
+This will create window once it's ready and will only show the window once the dom is completely ready to show.
+
+```js
+const { app, BrowserWindow } = require('electron');
+const os = require('os');
+const path = require('path');
+
+app.whenReady().then(main);
+
+let window;
+
+async function main() {
+  window = new BrowserWindow({
+    icon: path.join(__dirname, 'icon.ico'),
+    show: false, // have to set to invisible
+  });
+  window.loadFile(path.join(__dirname, '/index.html'));
+
+  // prevents flickering on windows
+  window.on('ready-to-show', window.show);
+}
+```
+
+## Sending Messages and Functons from main process to browser
+
+### index.js / node server
+
+```js
+
+const { app, BrowserWindow, ipcMain } = require('electron');
+const os = require('os');
+const path = require('path');
+const { currentLoad, cpu } = require('systeminformation');
+require('electron-reload')(__dirname);
+
+app.whenReady().then(main);
+
+let window;
+
+async function main() {
+  window = new BrowserWindow({
+    icon: path.join(__dirname, 'icon.ico'),
+    autoHideMenuBar: true, // This will hide menu bar
+    show: false, // have to set to invisible
+    webPreferences: {
+      //   devTools: false,
+      preload: path.join(__dirname, 'backend', 'preload.js'), // This load the preview script which is the glue for connecting browser to the node process.
+    },
+  });
+  window.loadFile(path.join(__dirname, 'app', 'index.html'));
+  window.webContents.openDevTools();
+  // prevents flickering on windows
+  window.on('ready-to-show', window.show);
+}
+
+// This how we respond to events being sent from the browser
+ipcMain.handle('cpu/get', async (event, data) => {
+  const usage = await currentLoad();
+
+  return usage;
+});
+```
+
+### Prelaod
+
+This will both on the browser and node server.  
+
+ipcRenderer is what triggers an event in the node server.  Notice in the index.js file we are listening for `cpu/get`. 
+
+contextBridge attached an object to the window called app.
+
+```js
+const os = require('os');
+const { ipcRenderer, contextBridge } = require('electron');
+
+
+const API = {
+  cpusUsage: () => ipcRenderer.invoke('cpu/get', 'Hello from renderer'),
+};
+
+contextBridge.exposeInMainWorld('app', API);
+```
+
+### Renderer.js
+
+This is plain javascript file that has no access to anything running on the node server.  The only thing it will have access to is what is put into the API variable in the preload script.
+
+```js
+const CPU_USED_TXT = document.getElementById('used-cpu');
+const INNER_BAR = document.getElementById('inner-bar');
+
+async function getCpuUsage() {
+  const usage = await app.cpusUsage();
+  const usedOverall = usage.currentLoad;
+  updatePercentage(usedOverall);
+}
+
+function updatePercentage(percent = 0) {
+  INNER_BAR.style.width = `${percent.toFixed(1)}%`;
+  CPU_USED_TXT.textContent = `${percent.toFixed(1)}%`;
+}
+
+setInterval(() => {
+  getCpuUsage();
+}, 2000);
+```
