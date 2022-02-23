@@ -49,3 +49,11 @@ class GameViewController: UIViewController {
     }
 }
 ```
+
+## Game Scene
+
+So I dragged and dropped some images from the course into the game scene.  I had to adjust the z-index on the sky scene to be able to see everything.  I also set width to 896 and height to 414.
+
+![Simulator Screen Shot - iPhone 11 - 2022-02-22 at 22 17 13](https://user-images.githubusercontent.com/9620015/155270214-1f17dcb8-31ce-4ec2-9206-b475defc083e.png)
+
+
