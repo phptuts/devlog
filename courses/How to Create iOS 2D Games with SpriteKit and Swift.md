@@ -56,4 +56,12 @@ So I dragged and dropped some images from the course into the game scene.  I had
 
 ![Simulator Screen Shot - iPhone 11 - 2022-02-22 at 22 17 13](https://user-images.githubusercontent.com/9620015/155270214-1f17dcb8-31ce-4ec2-9206-b475defc083e.png)
 
+## Animating Sprites Using the GameScene.sks 
+
+- You must put a z position on all the sprites
+- Animate grab a move from + icon on xcode
+- Color Sprite can be turned into image by adding a texture
+
+https://user-images.githubusercontent.com/9620015/155473434-d112ed8e-a93f-4ad0-820f-f9e0b0a3dee0.mp4
+
 
