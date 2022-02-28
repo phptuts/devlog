@@ -64,4 +64,104 @@ So I dragged and dropped some images from the course into the game scene.  I had
 
 https://user-images.githubusercontent.com/9620015/155473434-d112ed8e-a93f-4ad0-820f-f9e0b0a3dee0.mp4
 
+## Getting a sprite from SKScene to Code
 
+Use the childNode(withName: ) function.
+
+```swift
+guard let track = self.childNode(withName: "\(i)") as? SKSpriteNode else { return }
+```
+
+## Creating a sprite by hand
+
+1. Use the SKSpriteNode Constructor
+2. Postion the sprite node
+3. Use addChild to add it to the scene
+
+```swift
+func createPlayer() {
+        player = SKSpriteNode(imageNamed: "player")
+        guard let playerPosition = tracksArray?.first?.position.x else {
+            return
+        }
+        
+        player?.position = CGPoint(x: playerPosition, y: self.size.height / 2)
+        addChild(player!)
+    }
+```
+
+## Seeing if a player touched a sprite
+
+1. Get the first touch
+2. Get the location of first touch within the context of the view
+3. Then find all the nodes that were touches
+
+
+Here I only want the nodes with the names "right", "left", "down"
+
+```swift
+ override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let node = self.nodes(at: location).first(where: { $0 is SKSpriteNode && ["right", "up", "down"].contains($0.name) })
+            
+            if node?.name == "right" {
+                moveToNextTrack()
+            } else if node?.name == "up" {
+                moveVertically(up: true)
+            } else if node?.name == "down" {
+                moveVertically(up: false)
+            }
+        }
+    }
+```
+
+## SKAction
+
+SkActions are how animations, sounds and other actions are performed in the game.
+
+SkActions can be ran against any SKNode
+
+1. Create the SKAction
+2. Run the action
+
+```swift
+ func moveVertically(up: Bool) {
+        if up {
+            let moveAction = SKAction.moveBy(x: 0, y: 3, duration: 0.01)
+            let repeatAction = SKAction.repeatForever(moveAction)
+            player?.run(repeatAction)
+        } else {
+            let moveAction = SKAction.moveBy(x: 0, y: -3, duration: 0.01)
+            let repeatAction = SKAction.repeatForever(moveAction)
+            player?.run(repeatAction)
+
+        }
+    }
+```
+
+## End an action
+
+```swift
+ override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if !movingToTrack {
+            player?.removeAllActions()
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        player?.removeAllActions()
+
+    }
+```
+
+## Update 
+
+Update is called everytime render the loop is execute.  
+
+```swift
+override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+    }
+```
