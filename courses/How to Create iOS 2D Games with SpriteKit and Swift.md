@@ -165,3 +165,55 @@ override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
 ```
+
+## Creating Random 
+
+Use GKRandomSource when creating random element.  GK means Game Kit.  
+
+### Random Number
+
+Create a random number from 0 to 2
+
+```swift
+GKRandomSource.sharedRandom().nextInt(upperBound: 3)
+```
+
+### Random Boolean
+
+```swift
+ GKRandomSource.sharedRandom().nextBool()
+```
+
+## Create Physics Bodies
+
+Physics Bodies allow for physics engine to affect the sprite.  They are create by putting a border around the sprite.  You can set it's velocity, gravity etc.
+
+```swift
+        enemySprite.physicsBody = SKPhysicsBody(edgeLoopFrom: enemySprite.path!)
+        enemySprite.physicsBody?.velocity = up ? CGVector(dx: 0, dy: velocityArray[track]) : CGVector(dx: 0, dy: -velocityArray[track])
+
+```
+
+## Getting a list of SKNodes by Name
+
+```swift
+self.enumerateChildNodes(withName: "ENEMY") { (node:SKNode, nil) in
+            if node.position.y < -150 || node.position.y > self.size.height + 150 {
+                node.removeFromParent()
+            }
+        }
+```
+
+## Example of creating a repeated Action
+
+This will run the code and then wait 2 seconds.
+
+```swift
+self.run(SKAction.repeatForever(SKAction.sequence([
+            SKAction.run {
+                [weak self] in
+                self?.spawnEnemies()
+            },
+            SKAction.wait(forDuration: 2)
+        ])))
+```
