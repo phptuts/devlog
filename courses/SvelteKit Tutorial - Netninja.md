@@ -35,3 +35,69 @@ src -> lib -> about.svelte
 <Title title="Ninja Gaming Reviews - About" />
 
 ```
+
+## Layouts
+
+Layouts are found files that reset the whole the page.  The slot is where the page components html & css are renders. 
+What is cool is that you import css directly into the layout.  Layout file names are __layouts.svelte
+
+
+src -> lib -> __layout.svelte
+
+```svelte
+<script>
+  import '../../styles/global.css';
+  import Title from '$lib/title.svelte';
+</script>
+
+<header>
+  <nav>
+    <Title title="Ninja Gaming Guide" />
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/guides">Guides</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <slot />
+</main>
+
+<footer>
+  <p>Copyright 2022 Ninja Gaming Guides</p>
+</footer>
+
+<style>
+  header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  main {
+    max-width: 960px;
+    margin: 20px auto;
+  }
+  footer {
+    text-align: center;
+  }
+  .links {
+    margin-left: auto;
+  }
+  a {
+    margin-left: 10px;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+</style>
+```
+
+## Reset Layouts
+
+These allow you to reset the layout for any folder of routes.  It's name is __layout.reset.svelte.
+
