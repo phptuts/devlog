@@ -217,3 +217,7 @@ self.run(SKAction.repeatForever(SKAction.sequence([
             SKAction.wait(forDuration: 2)
         ])))
 ```
+
+## Removing SKNodes
+
+Once an SKNode has left the game you want to remove the node.  In the game we are building we do that createNode but I think it would better to do it in the update function.
