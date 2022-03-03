@@ -221,3 +221,41 @@ self.run(SKAction.repeatForever(SKAction.sequence([
 ## Removing SKNodes
 
 Once an SKNode has left the game you want to remove the node.  In the game we are building we do that createNode but I think it would better to do it in the update function.
+
+```swift
+  sprite.physicsBody = SKPhysicsBody(rectangleOf: enemySprite.size)
+```
+
+## SKPhysicsBody
+
+The give your sprites a physics simulation which is calculated on every frame rendering.
+
+### Static vs Dynamic
+
+A static physics body is not movable.  Think a wall in a maze
+A dynamic physics body is movable.  You can toggle the property like so.
+
+```swift
+  sprite.physicsBody?.isDynamic = true
+```
+
+### Edge Constructor
+
+If you use an edge constructor when creating a physics body it means that your physics body does not have a mass or take up any space.  This allows you to apply a velocity without gravity affecting it. 
+
+```swift
+        enemySprite.physicsBody = SKPhysicsBody(edgeLoopFrom: enemySprite.path!)
+```
+
+### Physics Body Declared with texture
+
+This has the worst performance but is the most accurate with collisions.  It uses the actual image to draw a boundary around the image for collision detection.  The best performance is circleOfRadius
+
+```swift
+        let texture = SKTexture(imageNamed: "player")
+        player = SKSpriteNode(texture: texture, size: texture.size())
+        
+        // Best performance
+        // SKPhysicsBody(circleOfRadius: 32)
+```
+
