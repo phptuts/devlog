@@ -267,3 +267,60 @@ This has the worst performance but is the most accurate with collisions.  It use
 
 ![Screen Shot 2022-03-03 at 9 58 10 PM](https://user-images.githubusercontent.com/9620015/156708118-386e9d6a-b977-4d96-9010-8bf452b4382d.png)
 
+## Responding Collision
+
+Here is a complete example I created of a game with a floor and an object.  The object will fall and hit the floor.  The game will be notified that this happenned.
+
+```swift
+import SpriteKit
+import GameplayKit
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    let groundBitMask:UInt32 = 0x0000001
+    let objectBitMask:UInt32 = 0x0000010
+    
+    var ground: SKSpriteNode!
+    var object: SKSpriteNode!
+    
+    override func didMove(to view: SKView) {
+        
+        ground = self.childNode(withName: "ground") as! SKSpriteNode
+        object = self.childNode(withName: "object") as! SKSpriteNode
+        physicsWorld.contactDelegate = self
+        
+        ground.physicsBody = SKPhysicsBody(rectangleOf: ground.size)
+        object.physicsBody = SKPhysicsBody(rectangleOf: object.size)
+        
+        ground.physicsBody?.isDynamic = false
+        ground.physicsBody?.affectedByGravity = false
+
+        
+        ground.physicsBody?.categoryBitMask = groundBitMask
+        object.physicsBody?.categoryBitMask = objectBitMask
+        
+        ground.physicsBody?.collisionBitMask =  objectBitMask
+        object.physicsBody?.collisionBitMask = groundBitMask
+        
+        object.physicsBody?.contactTestBitMask = groundBitMask
+        
+    }
+    
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let nodeA = contact.bodyA
+        let nodeB = contact.bodyB
+        
+        let collision: UInt32 = nodeA.categoryBitMask | nodeB.categoryBitMask
+        
+        if collision == groundBitMask | objectBitMask {
+            print("Ground collided with object")
+        }
+    }
+    
+    
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+    }
+}
+```
