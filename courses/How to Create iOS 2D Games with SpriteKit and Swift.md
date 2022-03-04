@@ -259,3 +259,11 @@ This has the worst performance but is the most accurate with collisions.  It use
         // SKPhysicsBody(circleOfRadius: 32)
 ```
 
+## Collision Detection Bitmasks
+
+- Category Bitmask -> Define the category of object 
+- Collision Bitmask -> Define which categories can collide with each other
+- Contact Test Bitmask -> Define what collision we want to notified with in the game scene
+
+![Screen Shot 2022-03-03 at 9 58 10 PM](https://user-images.githubusercontent.com/9620015/156708118-386e9d6a-b977-4d96-9010-8bf452b4382d.png)
+
