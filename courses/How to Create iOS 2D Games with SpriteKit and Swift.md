@@ -324,3 +324,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 }
 ```
+
+## How to stop collision object for an object
+
+Set it's bitMask to zero.  By default it will collide with everything
+
+```swift
+ground.physicsBody?.collisionBitMask
+```
