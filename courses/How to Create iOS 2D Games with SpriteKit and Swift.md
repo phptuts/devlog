@@ -1,5 +1,7 @@
 # How to Create iOS 2D Games with SpriteKit and Swift
 
+The code for this can be found: https://github.com/phptuts/ColorGameCourse
+
 ## What is sprite kit
 
 SpriteKit is a game engine that is built and maintained by apple.  It's used for rendering and animating arbitrary textured images.  
