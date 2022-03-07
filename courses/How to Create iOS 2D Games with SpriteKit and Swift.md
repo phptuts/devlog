@@ -1,5 +1,7 @@
 # How to Create iOS 2D Games with SpriteKit and Swift
 
+Teh course can be found here: https://www.udemy.com/share/101Ipi3@TMNSPYwnHIjhrioisxbHRPDd_kbq9LbPUDX_2tX-zXA6R7CL8AZhOkx5CtZ-La0=/
+
 The code for this can be found: https://github.com/phptuts/ColorGameCourse
 
 ## What is sprite kit
