@@ -332,3 +332,44 @@ Set it's bitMask to zero.  By default it will collide with everything
 ```swift
 ground.physicsBody?.collisionBitMask
 ```
+
+## How to transition into another scene
+
+```swift
+let transition = SKTransition.fade(withDuration: 1)
+if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
+    gameOverScene.scaleMode = .aspectFit
+    self.view?.presentScene(gameOverScene, transition: transition)
+}
+```
+
+
+## How to pause the game
+
+scene.isPause controls whether the game is paused
+
+```swift
+scene.isPaused = true
+```
+
+## How to use a singleton
+
+```swift
+
+class GameHandler {
+
+     class var sharedInstance:  GameHandler {
+        struct Singleton {
+            static let instance = GameHandler()
+        }
+        return Singleton.instance
+    }
+    
+    func saveGameStats() {
+        // ...
+    }
+}
+
+// example of using it
+GameHandler.sharedInstance.saveGameStats()
+```
