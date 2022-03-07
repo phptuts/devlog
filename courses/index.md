@@ -6,7 +6,8 @@ These are the courses, books I have notes for.
 
 - [Firebase 9 Net Ninja](firebase-9-course-netninja.md)
 - [Electron JS Simplified](electron-jsimplified.md)
-- [iOS Udemy Game Course](How%20to%20Create%20iOS%202D%20Games%20with%20SpriteKit%20and%20Swift.md)
+- [How to Create iOS 2D Games with SpriteKit and Swift
+](How%20to%20Create%20iOS%202D%20Games%20with%20SpriteKit%20and%20Swift.md)
 
 ## WIP Course
 
