@@ -101,3 +101,87 @@ src -> lib -> __layout.svelte
 
 These allow you to reset the layout for any folder of routes.  It's name is __layout.reset.svelte.
 
+## SSR (Server Side Rendering)
+
+This is done in script tag with the context="module" script.  It's done in an async function called load.  You can then pass props into the regular script tag.
+
+You can also return a status and error.  You can also do a redirect as well.
+
+```js
+<script context="module">
+  export async function load({ fetch, params }) {
+    const response = await fetch(`/guides/${params['id']}.json`);
+    const { guide } = await response.json();
+    console.log(guide);
+    if (response.ok) {
+      return {
+        props: {
+          guide,
+        },
+      };
+    }
+
+    return {
+      status: response.status,
+      error: new Error('Guide not found.'),
+    };
+  }
+</script>
+<script>
+  export let guide;
+</script>
+```
+
+## Routing
+
+You can add a wild card route by using the [id].svelte
+
+In this case you would get params in your handler that would allow you access the id.
+
+```svelte
+<script context="module">
+  export async function load({ fetch, params }) {
+    const response = await fetch(`/guides/${params['id']}.json`);
+   // ...
+   }
+<script>
+```
+
+## Prefetch
+
+Prefetch is done by adding sveltekit:prefetch to anchor tag.
+
+```svelte
+      <li><a sveltekit:prefetch href="/guides/{guide.id}">{guide.title}</a></li>
+```
+
+## API Routes
+
+They start with .js or you can put the extension by saying json.js.  
+
+```js
+export async function get({ params }) {
+  const guides = [
+    { id: 1, title: 'Some title 1', body: 'body' },
+    { id: 2, title: 'Some title 2', body: 'body' },
+    { id: 3, title: 'Some title 3', body: 'body' },
+    { id: 4, title: 'Some title 4', body: 'body' },
+    { id: 5, title: 'Some title 5', body: 'body' },
+  ];
+
+  const guide = guides.find((g) => g.id == params.id);
+
+  if (guide) {
+    return {
+      status: 200,
+      body: { guide },
+    };
+  }
+
+  return {
+    status: 404,
+    error: new Error('Not found'),
+  };
+}
+
+```
