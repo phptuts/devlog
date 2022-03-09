@@ -1,4 +1,4 @@
-# Sveltekit Firebase 9 SSR
+# SSR with SvelteKit using Firebase 9 & Firestore
 
 ## Code
 
