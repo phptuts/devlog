@@ -4,6 +4,11 @@
 
 https://github.com/phptuts/sveltekit-firebase9/tree/1-ssr
 
+## Docs
+
+- [Load Function Docs](https://kit.svelte.dev/docs/loading)
+- [Netninja Firebase 9 Cliff Notes](https://github.com/phptuts/devlog/blob/master/courses/firebase-9-course-netninja.md)
+
 ## How it works
 
 ![Firebase 9 SSR (1)](https://user-images.githubusercontent.com/9620015/157374390-e8cfd7c0-929d-4ffd-a46b-911a64f5abab.png)
